@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เว็บดูดวงฟรี</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="w-full max-w-xl bg-red-900 p-6 rounded-2xl shadow-lg">
+    <h1 class="text-3xl font-bold text-center mb-4">ดูดวงฟรี 🔮</h1>
+    <form id="fortuneForm" class="space-y-4">
+      <input type="text" placeholder="ชื่อ-นามสกุล" required class="w-full p-2 rounded bg-black border border-red-500 text-white">
+      <input type="number" placeholder="วันเกิด (เช่น 7)" required class="w-full p-2 rounded bg-black border border-red-500 text-white">
+      <input type="number" placeholder="เดือนเกิด (1-12)" required class="w-full p-2 rounded bg-black border border-red-500 text-white">
+      <input type="number" placeholder="ปีเกิด (พ.ศ.)" required class="w-full p-2 rounded bg-black border border-red-500 text-white">
+      <input type="tel" placeholder="เบอร์โทร" required class="w-full p-2 rounded bg-black border border-red-500 text-white">
+      <input type="text" placeholder="หัวข้อที่ต้องการดู (ความรัก, การเงิน ฯลฯ)" required class="w-full p-2 rounded bg-black border border-red-500 text-white">
+      <button type="submit" class="w-full bg-black text-red-500 border border-red-500 rounded py-2 hover:bg-red-700 hover:text-white transition">ดูดวงเลย</button>
+    </form>
+
+    <div id="result" class="mt-6 hidden bg-black border border-red-500 p-4 rounded text-white">
+      <h2 class="text-xl font-bold mb-2">ผลการดูดวง</h2>
+      <p id="summary"></p>
+      <p class="mt-4 font-bold text-lg">เลขเด็ดของคุณคือ: <span id="luckyNumber" class="text-red-400"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('fortuneForm');
+    const resultDiv = document.getElementById('result');
+    const summaryP = document.getElementById('summary');
+    const luckyNumberSpan = document.getElementById('luckyNumber');
+
+    const fortunes = [
+      "วันนี้เป็นวันที่ดี เริ่มต้นอะไรใหม่ ๆ จะประสบความสำเร็จ",
+      "ระวังเรื่องการเงิน อย่าให้ใครยืมเงินช่วงนี้",
+      "เรื่องความรักจะมีข่าวดีจากคนที่คุณแอบชอบ",
+      "ระวังคำพูด อาจทำให้มีปัญหากับเพื่อนร่วมงาน",
+      "ดวงการงานพุ่งแรง มีโอกาสได้เลื่อนขั้น"
+    ];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+      const luckyNumber = Math.floor(10 + Math.random() * 90); // เลข 2 หลัก
+      summaryP.textContent = randomFortune;
+      luckyNumberSpan.textContent = luckyNumber;
+      resultDiv.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
